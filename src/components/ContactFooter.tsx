@@ -5,6 +5,11 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function ContactFooter() {
   const marqueeRef = useRef<HTMLDivElement>(null);
+  
+  const isMobile = typeof navigator !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const mailLink = isMobile 
+    ? "mailto:priyankverma10@gmail.com" 
+    : "https://mail.google.com/mail/?view=cm&fs=1&to=priyankverma10@gmail.com";
 
   useEffect(() => {
     if (marqueeRef.current) {
@@ -55,7 +60,7 @@ export default function ContactFooter() {
             Let's create <span className="font-display italic">impactful systems</span>
           </h2>
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=priyankverma10@gmail.com"
+            href={mailLink}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex rounded-full items-center justify-center border border-stroke bg-surface/50 backdrop-blur-md text-text-primary hover:border-transparent px-8 py-5 transition-colors overflow-hidden text-lg"

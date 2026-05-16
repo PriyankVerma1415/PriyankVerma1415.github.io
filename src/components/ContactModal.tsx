@@ -22,10 +22,14 @@ function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onOpenResume: () => void;
 }
 
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
+  const isMobile = typeof navigator !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const mailLink = isMobile 
+    ? "mailto:priyankverma10@gmail.com" 
+    : "https://mail.google.com/mail/?view=cm&fs=1&to=priyankverma10@gmail.com";
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -62,7 +66,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             {/* Content */}
             <div className="p-6 space-y-4">
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=priyankverma10@gmail.com"
+                href={mailLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-[#3b82f6]/30 hover:bg-[#3b82f6]/5 transition-all duration-300"
