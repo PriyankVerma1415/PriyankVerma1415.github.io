@@ -110,7 +110,7 @@ export default function Hero() {
 
           <div className="hidden md:block w-px h-5 bg-stroke mx-1" />
 
-          <div className="flex items-center space-x-1 mx-2">
+          <div className="flex items-center space-x-1 mx-2 overflow-x-auto overflow-y-hidden max-w-[45vw] sm:max-w-full [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {navLinks.map((link) => (
               <a
                 key={link}
@@ -122,7 +122,7 @@ export default function Hero() {
                   }
                 }}
                 className={cn(
-                  "text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 transition-colors",
+                  "text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 transition-colors shrink-0",
                   activeSection === link.toLowerCase() && link !== "Resume"
                     ? "text-text-primary bg-stroke/50"
                     : "text-muted hover:text-text-primary hover:bg-stroke/50"
@@ -158,7 +158,7 @@ export default function Hero() {
       </nav>
 
       {/* Hero Content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-4">
+      <div className="relative z-10 flex flex-col items-center text-center px-4 pb-32 md:pb-0">
         <div className="blur-in text-xs text-muted uppercase tracking-[0.3em] mb-8">
           Software Developer
         </div>

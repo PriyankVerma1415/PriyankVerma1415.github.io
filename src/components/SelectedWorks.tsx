@@ -164,7 +164,7 @@ export default function SelectedWorks() {
               key={i}
               onClick={() => setSelectedProject(project)}
               className={cn(
-                "group relative bg-surface border border-stroke rounded-3xl overflow-hidden cursor-pointer",
+                "group relative bg-surface border border-stroke rounded-3xl overflow-hidden cursor-pointer min-h-[380px] sm:min-h-0",
                 project.span,
                 project.aspect
               )}
