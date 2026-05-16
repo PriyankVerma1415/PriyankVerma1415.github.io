@@ -1,0 +1,28 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="accent-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#89AACC" />
+      <stop offset="100%" stop-color="#4E85BF" />
+    </linearGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&amp;display=swap');
+      .logo-text {
+        font-family: 'Instrument Serif', Georgia, serif;
+        font-style: italic;
+        fill: #F5F5F5;
+        font-size: 110px;
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+    </style>
+  </defs>
+  
+  <!-- Outer gradient ring -->
+  <circle cx="128" cy="128" r="128" fill="url(#accent-gradient)" />
+  
+  <!-- Inner dark background -->
+  <circle cx="128" cy="128" r="118" fill="#0A0A0A" />
+  
+  <!-- PV Text -->
+  <text x="126" y="135" class="logo-text">PV</text>
+</svg>
