@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Lock } from "lucide-react";
 import { cn } from "../lib/utils";
 import ProjectModal from "./ProjectModal";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 export type Project = {
   title: string;
@@ -119,6 +120,13 @@ const projects: Project[] = [
 export default function SelectedWorks() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showAll, setShowAll] = useState(false);
+
+  useEffect(() => {
+    // Refresh ScrollTrigger to update positions after DOM height changes
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  }, [showAll]);
 
   return (
     <section id="work" className="bg-bg py-12 md:py-16">

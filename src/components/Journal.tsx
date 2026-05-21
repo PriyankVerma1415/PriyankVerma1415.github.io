@@ -1,15 +1,10 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { cn } from "../lib/utils";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 const projects = [
-  {
-    title: "Smart Helmet Voice Assistant",
-    subtitle: "AI-powered collision detection and intelligent alert system",
-    description: "Built an edge + cloud intelligent safety system using computer vision, real-time object detection, and voice-based alerts.",
-    stack: ["Python", "YOLO", "AWS SageMaker", "Raspberry Pi"],
-    image: "/projects/smart_helmet.png",
-    github: "#",
-  },
   {
     title: "Real-Time Messaging Platform",
     subtitle: "Concurrent Java-based client-server communication system",
@@ -17,10 +12,36 @@ const projects = [
     stack: ["Java", "Socket Programming", "Servlets", "Multithreading"],
     image: "/projects/messaging_platform.png",
     github: "#",
+  },
+  {
+    title: "Resume Analyzer",
+    subtitle: "AI-powered ATS Resume Analysis & Optimization Platform",
+    description: "Built an AI-powered Resume Analyzer platform that performs ATS-style resume evaluation, skill extraction, and job compatibility analysis using Gemini AI. Implemented secure authentication, intelligent resume parsing, structured AI analysis pipelines, caching, rate-limit handling, and persistent analysis history with Supabase. Designed a modern full-stack architecture with scalable backend APIs and optimized AI request management.",
+    stack: ["Python", "FastAPI", "React", "Next.js", "TypeScript", "Gemini AI", "Supabase", "PostgreSQL", "TailwindCSS"],
+    image: "/projects/resume_analyzer.png",
+    github: "https://github.com/PriyankVerma1415/Resume_analyzer",
+    link: "https://resume-analyzer-three-vert.vercel.app/"
+  },
+  {
+    title: "Smart Helmet Voice Assistant",
+    subtitle: "AI-powered collision detection and intelligent alert system",
+    description: "Built an edge + cloud intelligent safety system using computer vision, real-time object detection, and voice-based alerts.",
+    stack: ["Python", "YOLO", "AWS SageMaker", "Raspberry Pi"],
+    image: "/projects/smart_helmet.png",
+    github: "#",
   }
 ];
 
 export default function Journal() {
+  const [showAll, setShowAll] = useState(false);
+
+  useEffect(() => {
+    // Refresh ScrollTrigger to update positions after DOM height changes
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  }, [showAll]);
+
   return (
     <section id="projects" className="bg-bg py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
@@ -46,18 +67,21 @@ export default function Journal() {
             </p>
           </div>
 
-          <button className="hidden md:inline-flex group relative rounded-full items-center justify-center border border-stroke bg-bg text-text-primary hover:border-transparent px-6 py-3 transition-colors overflow-hidden">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="hidden md:inline-flex group relative rounded-full items-center justify-center border border-stroke bg-bg text-text-primary hover:border-transparent px-6 py-3 transition-colors overflow-hidden"
+          >
             <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity p-[2px]">
               <span className="absolute inset-[2px] bg-bg rounded-full" />
             </span>
             <span className="relative z-10 flex items-center gap-2 text-sm font-medium">
-              View all <ArrowRight className="w-4 h-4" />
+              {showAll ? "Go back" : "View all"} <ArrowRight className={cn("w-4 h-4 transition-transform", showAll && "rotate-180")} />
             </span>
           </button>
         </motion.div>
 
         <div className="flex flex-col gap-8 md:gap-12">
-          {projects.map((project, i) => (
+          {(showAll ? projects : projects.slice(0, 2)).map((project, i) => (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -92,12 +116,12 @@ export default function Journal() {
                 <p className="text-muted text-sm md:text-base mb-6 leading-relaxed max-w-lg">
                   {project.description}
                 </p>
-                
+
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-8">
                   {project.stack.map(tech => (
-                    <span 
-                      key={tech} 
+                    <span
+                      key={tech}
                       className="px-3 py-1.5 text-xs font-medium rounded-full bg-white/5 border border-white/10 text-muted group-hover:border-white/20 transition-colors"
                     >
                       {tech}
@@ -107,8 +131,10 @@ export default function Journal() {
 
                 {/* Actions */}
                 <div className="flex flex-wrap items-center gap-4 mt-auto">
-                  <a 
+                  <a
                     href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-sm font-medium text-text-primary hover:text-white transition-colors bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2.5 rounded-full"
                   >
                     <svg
@@ -125,22 +151,37 @@ export default function Journal() {
                     </svg>
                     Code
                   </a>
-                  <button className="inline-flex items-center gap-2 text-sm font-medium text-text-primary hover:text-white transition-colors group/btn">
-                    View Case Study 
-                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-                  </button>
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-text-primary hover:text-white transition-colors group/btn"
+                    >
+                      Live Project
+                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                    </a>
+                  ) : (
+                    <button className="inline-flex items-center gap-2 text-sm font-medium text-text-primary hover:text-white transition-colors group/btn">
+                      View Case Study
+                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                    </button>
+                  )}
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        <button className="md:hidden mt-8 w-full group relative rounded-full flex items-center justify-center border border-stroke bg-bg text-text-primary hover:border-transparent px-6 py-4 transition-colors overflow-hidden">
+        <button
+          onClick={() => setShowAll(!showAll)}
+          className="md:hidden mt-8 w-full group relative rounded-full flex items-center justify-center border border-stroke bg-bg text-text-primary hover:border-transparent px-6 py-4 transition-colors overflow-hidden"
+        >
           <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity p-[2px]">
             <span className="absolute inset-[2px] bg-bg rounded-full" />
           </span>
           <span className="relative z-10 flex items-center gap-2 text-sm font-medium">
-            View all <ArrowRight className="w-4 h-4" />
+            {showAll ? "Go back" : "View all"} <ArrowRight className={cn("w-4 h-4 transition-transform", showAll && "rotate-180")} />
           </span>
         </button>
       </div>
