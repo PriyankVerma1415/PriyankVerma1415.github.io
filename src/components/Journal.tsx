@@ -6,15 +6,16 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 const projects = [
   {
-    title: "Real-Time Messaging Platform",
-    subtitle: "Concurrent Java-based client-server communication system",
-    description: "Developed a scalable real-time messaging system with authenticated communication, bidirectional streams, and concurrent client handling.",
-    stack: ["Java", "Socket Programming", "Servlets", "Multithreading"],
+    title: "NexChat",
+    subtitle: "Real-Time Messaging & Video Calling Platform",
+    description: "Developed a full-stack chat application supporting real-time messaging, typing indicators, read receipts, media sharing, and WebRTC-powered audio/video calls. Built with Next.js, Node.js, MongoDB, Socket.IO, and Firebase, with secure JWT authentication and email OTP verification.",
+    stack: ["Next.js", "React", "TypeScript", "Node.js", "MongoDB", "Socket.IO", "WebRTC", "Firebase", "JWT"],
     image: "/projects/messaging_platform.png",
-    github: "#",
+    github: "https://github.com/PriyankVerma1415/Chat-Server",
+    link: "https://chat-server-five-dusky.vercel.app"
   },
   {
-    title: "Resume Analyzer",
+    title: "Resumora",
     subtitle: "AI-powered ATS Resume Analysis & Optimization Platform",
     description: "Built an AI-powered Resume Analyzer platform that performs ATS-style resume evaluation, skill extraction, and job compatibility analysis using Gemini AI. Implemented secure authentication, intelligent resume parsing, structured AI analysis pipelines, caching, rate-limit handling, and persistent analysis history with Supabase. Designed a modern full-stack architecture with scalable backend APIs and optimized AI request management.",
     stack: ["Python", "FastAPI", "React", "Next.js", "TypeScript", "Gemini AI", "Supabase", "PostgreSQL", "TailwindCSS"],
